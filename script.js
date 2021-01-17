@@ -61,6 +61,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// Functions
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
   movements.forEach(function (mov, i) {
@@ -77,7 +78,10 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}€`;
+};
 
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -89,7 +93,20 @@ const createUsernames = function (accs) {
   });
 };
 
+displayMovements(account1.movements);
+
+calcDisplayBalance(account1.movements);
+
 createUsernames(accounts);
-console.log(accounts);
 
 /////////////////////////////////////////////////
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// const deposits = movements.filter(mov => mov > 0);
+// console.log(deposits);
+
+// const withdrawals = movements.filter(mov => mov < 0);
+// console.log(withdrawals);
+
+// const sum = movements.reduce((acc, cur) => acc + cur, 30);
+// console.log(sum);
